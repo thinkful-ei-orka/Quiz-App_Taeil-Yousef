@@ -1,8 +1,93 @@
 /* Your styles should be mobile-first and responsive */
 
-/** 
-  * If you are unclear on how to utilize a mobile-first, responsive technique to write your CSS, here is an example: 
+/**
+  * If you are unclear on how to utilize a mobile-first, responsive technique to write your CSS, here is an example:
   *
-  * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
+  * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css
   *
 */
+
+/* Universal styles */
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+}
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+main {
+  padding: 0 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Typography */
+h1 {
+  font-size: 48px;
+}
+h2 {
+  font-size: 36px;
+}
+
+
+
+
+/* Form Elements */
+label {
+  padding: 10px 15px;
+  border: 1px solid #919DAC;
+  border-radius: 3px;
+  display: inline-block;
+  cursor: pointer;
+}
+label:hover {
+  background: #eee;
+}
+input:checked + label {
+  background: #ccc;
+}
+input:focus + label {
+  border-color: #3987FD;
+  border-width: 3px;
+}
+ul.answers {
+  list-style-type: none;
+  padding-left: 0;
+}
+ul.answers li {
+  display: block;
+  margin-bottom: 10px;
+}
+ul.answers li:hover {
+
+}
+button {
+  -webkit-appearance: none;
+  padding: 10px 15px;
+  border: 1px solid #919DAC;
+  border-radius: 3px;
+  display: inline-block;
+  cursor: pointer;
+}
+.alert {
+  padding: 10px 15px;
+  border: 1px solid #919DAC;
+  border-radius: 3px;
+  display: block;
+}
+.alert.correct {
+  background-image: ulr('/icon-correct.png');
+}
+.alert.wrong {
+  background-image: url('./icon-wrong.png');
+}
+
+/* Components */
+
+
+
+
+/* Other */
+.startPage {
+  text-align: center;
+}
