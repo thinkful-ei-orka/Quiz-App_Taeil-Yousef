@@ -33,22 +33,23 @@ h2 {
 
 
 /* Form Elements */
-label {
+.answer {
   padding: 10px 15px;
   border: 2px solid #919DAC;
   border-radius: 3px;
   display: inline-block;
   cursor: pointer;
 }
-label:hover {
+.answer:hover {
   background: #eee;
 }
-input:checked + label {
+.answer.selected {
   background: #ccc;
 }
-input:focus + label {
+.answer:focus {
   border-color: #3987FD;
 }
+
 ul.answers {
   list-style-type: none;
   padding-left: 0;
@@ -57,9 +58,7 @@ ul.answers li {
   display: block;
   margin-bottom: 10px;
 }
-ul.answers li:hover {
 
-}
 button {
   -webkit-appearance: none;
   padding: 10px 15px;
