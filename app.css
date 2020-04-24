@@ -35,7 +35,7 @@ h2 {
 /* Form Elements */
 label {
   padding: 10px 15px;
-  border: 1px solid #919DAC;
+  border: 2px solid #919DAC;
   border-radius: 3px;
   display: inline-block;
   cursor: pointer;
@@ -48,7 +48,6 @@ input:checked + label {
 }
 input:focus + label {
   border-color: #3987FD;
-  border-width: 3px;
 }
 ul.answers {
   list-style-type: none;
@@ -88,6 +87,15 @@ button {
 
 
 /* Other */
+.page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  padding: 20px 0;
+}
 .startPage {
   text-align: center;
 }
