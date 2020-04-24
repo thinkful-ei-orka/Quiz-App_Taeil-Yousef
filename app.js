@@ -107,7 +107,6 @@ function questionTemplate () {
     answersHtml += `<li><button class="answer">${answer}</button></li>`;
   });
   answersHtml += '</ul>';
-
   mainHtml = '<section class="page"><div class="container">' + questionAndScoreHtml + questionHtml + answersHtml + footerHtml + '</div></section>';
 
   $('main').html(mainHtml);
@@ -119,7 +118,6 @@ function questionTemplate () {
     } else {
       renderIncorrect();
     }
-
     $(this).addClass('selected');
     $('.answer').off('click');
   });
@@ -129,7 +127,8 @@ function endQuizTemplate () {
   let marioImage = '';
   if (store.score >= 3){
     marioImage = 'src="img/mario-success.png" alt="Jumping Mario"';
-  } else {
+  }
+  else {
     marioImage = 'src="img/mario-failure.png" alt="Sad Mario"';
   };
 
@@ -159,7 +158,8 @@ function renderCorrect() {
   let buttonText = '';
   if (store.questionNumber === store.questions.length - 1) {
     buttonText = '<button class="finishButton">Finish</button>';
-  } else {
+  }
+  else {
     buttonText = '<button class="nextQuestion">Next Question</button>';
   }
 
@@ -178,10 +178,10 @@ function renderIncorrect() {
   let buttonText = '';
   if (store.questionNumber === store.questions.length - 1) {
     buttonText = '<button class="finishButton">Finish</button>';
-  } else {
+  }
+  else {
     buttonText = '<button class="nextQuestion">Next Question</button>';
   }
-
   $('.question-footer').html(`<div class="alert wrong">Wrong! The correct answer was ${store.questions[store.questionNumber].correctAnswer}.</div>${buttonText}`);
 
   // Set all the store variables
