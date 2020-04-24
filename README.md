@@ -1,1 +1,2 @@
 # Quiz-App_Taeil-Yousef
+// This Video Game History Quiz was written by Taeil and Yousef. We complied 5 multiple choice questions about video game history. We choose this topic based on our common interests and wanted to make it fun/interesting. The technologies we used to build this app were HTML, CSS, and Jquery. It was a nice challenge breaking down bigger function into smaller ones which is one hurdle we had to overcome. We communicated well and were able to fix all issues we ran into.
