@@ -27,9 +27,9 @@
       </section>
       <section class="page">
         <div class="container">
-          <div class="">
-              <div>Question 1 of 5</div>
-              <div>Current Score: 1/1</div>
+          <div class="question-header">
+              <div class="question-number">Question 1 of 5</div>
+              <div class="question-score">Current Score: 1/1</div>
           </div>
           <form>
             <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed?</h2>
@@ -39,7 +39,6 @@
               <li><button class="answer">The quick brown fox jumps over the lazy dog.</button></li>
               <li><button class="answer">The quick brown fox jumps over the lazy dog.</button></li>
             </ul>
-            <button>Go Back</button>
           </form>
         </div>
         </section>
@@ -53,24 +52,42 @@
               <li><button class="answer">The quick brown fox jumps over the lazy dog.</button></li>
               <li><button class="answer">The quick brown fox jumps over the lazy dog.</button></li>
             </ul>
-            <div class="alert correct">Correct!</div>
-            <div class="alert wrong">Wrong! The correct answer was The quick brown fox jumps over the lazy dog.</div>
-            <button>Next Question</button>
-            <button>Finish (for the last page)</button>
+            <div class="question-footer">
+              <div class="alert correct">Correct!</div>
+              <div class="alert wrong">Wrong! The correct answer was The quick brown fox jumps over the lazy dog.</div>
+              <button>Next Question</button>
+              <button>Finish (for the last page)</button>
+            </div>
+
           </form>
         </div>
       </section>
-      <section class="page">
+      <section class="page finishPage">
         <div class="container">
-          <img src="">
+          <div><img src="img/mario-failure.png"></div>
+          <div class="finalScore"><div>
+            <h1>Your Score:</h1>
+            <h2>1 out of 5</h2>
+            <button>Start Over</button>
+          </div></div>
+
+        </div>
+    </section>
+    <section class="page finishPage">
+      <div class="container">
+        <div><img src="img/mario-success.png"></div>
+        <div class="finalScore"><div>
           <h1>Your Score:</h1>
           <h2>4 out of 5</h2>
           <button>Start Over</button>
-        </div>
-    </section>
+        </div></div>
+      </div>
+  </section>
   </main>
+  <!--
   <script src="https://code.jquery.com/jquery-3.4.1.slim.js" crossorigin="anonymous"></script>
   <script src="app.js"></script>
+  -->
 </body>
 
 </html>

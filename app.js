@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Example store structure
  */
@@ -78,34 +80,116 @@ const store = {
 /** ******** TEMPLATE GENERATION FUNCTIONS **********/
 
 function startQuizTemplate () {
-  $('main').html(`<section class="startPage">
+  // Set the start page
+  $('main').html(`<section class="page startPage"><div class="container">
 <h1>Video Game History Quiz</h1>
 <h2>Think you know your video games?</h2>
 <button class="startButton">Let's go!</button>
-</section>`)
+</div></section>`);
+
+  // Initiate the start button and quiz
+  $('.startButton').on('click', function() {
+    questionTemplate();
+    store.quizStarted = true;
+  });
 }
 
 function questionTemplate () {
+  // Set the question page
+  let mainHtml = '';
+  let questionAndScoreHtml = `<div class="question-header"><div class="question-number">Question ${store.questionNumber + 1} of ${store.questions.length}</div><div class="question-score">Current Score: ${store.score}/${store.questionNumber}</div></div>`;
+  let questionHtml = `<header><h2>${store.questions[store.questionNumber].question}</h2></header>`;
+  let answersHtml = '';
+  let footerHtml = '<div class="question-footer"></div>';
 
-}
+  answersHtml += '<ul class="answers">';
+  store.questions[store.questionNumber].answers.forEach((answer) => {
+    answersHtml += `<li><button class="answer">${answer}</button></li>`;
+  });
+  answersHtml += '</ul>';
 
-function incorrectResultTemplate () {
+  mainHtml = '<section class="page"><div class="container">' + questionAndScoreHtml + questionHtml + answersHtml + footerHtml + '</div></section>';
 
-}
+  $('main').html(mainHtml);
 
-function correctResultTemplate () {
+  // Initiate question buttons
+  $('.answer').on('click', function() {
+    if ($(this).html() === store.questions[store.questionNumber].correctAnswer) {
+      renderCorrect();
+    } else {
+      renderIncorrect();
+    }
 
+    $(this).addClass('selected');
+    $('.answer').off('click');
+  });
 }
 
 function endQuizTemplate () {
+  let marioImage = '';
+  if (store.score >= 3){
+    marioImage = 'src="img/mario-success.png" alt="Jumping Mario"';
+  } else {
+    marioImage = 'src="img/mario-failure.png" alt="Sad Mario"';
+  };
 
+  $('main').html(`<section class="page finishPage"><div class="container">
+  <div><img ${marioImage}></div>
+  <div class="finalScore"><div>
+    <h1>Your Score:</h1>
+    <h2>${store.score}/${store.questions.length}</h2>
+    <button class="reset">Start Over</button>
+  </div></div>
+  </div></section>`);
+
+
+  $('.reset').on('click', function() {
+    store.quizStarted = false;
+    store.score = 0;
+    store.questionNumber = 0;
+    startQuizTemplate();
+  });
 }
 // These functions return HTML templates
 
 /** ******** RENDER FUNCTION(S) **********/
 
-function renderQuestions () {
+function renderCorrect() {
+  // if it's the last question, say Finish instead of next question
+  let buttonText = '';
+  if (store.questionNumber === store.questions.length - 1) {
+    buttonText = '<button class="finishButton">Finish</button>';
+  } else {
+    buttonText = '<button class="nextQuestion">Next Question</button>';
+  }
 
+  $('.question-footer').html(`<div class="alert correct">Correct!</div>${buttonText}`);
+
+  // Set all the store variables
+  store.score += 1;
+  store.questionNumber += 1;
+
+  $('.nextQuestion').on('click', function() {questionTemplate()});
+  $('.finishButton').on('click', function() {endQuizTemplate ()});
+}
+
+function renderIncorrect() {
+  // if it's the last question, say Finish instead of next question
+  let buttonText = '';
+  if (store.questionNumber === store.questions.length - 1) {
+    buttonText = '<button class="finishButton">Finish</button>';
+  } else {
+    buttonText = '<button class="nextQuestion">Next Question</button>';
+  }
+
+  $('.question-footer').html(`<div class="alert wrong">Wrong! The correct answer was ${store.questions[store.questionNumber].correctAnswer}.</div>${buttonText}`);
+
+  // Set all the store variables
+  // Don't touch the score
+  store.questionNumber += 1;
+
+  $('.nextQuestion').on('click', function() {questionTemplate()});
+  $('.finishButton').on('click', function() {endQuizTemplate ()});
 }
 
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
@@ -113,24 +197,11 @@ function renderQuestions () {
 /** ******** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
-function startGameHandle () {
-
-}
-
-function enterAnswerHandle () {
-
-}
-
-function nextQuestionHandle () {
-
-}
-
-function restartGamehandle () {
-
-}
 
 function handleQuizApp () {
-
+  startQuizTemplate();
 }
 
-$(handleQuizApp)
+$(document).ready(function() {
+  handleQuizApp();
+});
