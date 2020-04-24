@@ -75,7 +75,7 @@ button {
   display: block;
 }
 .alert.correct {
-  background-image: ulr('/icon-correct.png');
+  background-image: url('/icon-correct.png');
 }
 .alert.wrong {
   background-image: url('./icon-wrong.png');
