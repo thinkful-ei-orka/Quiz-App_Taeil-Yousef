@@ -175,6 +175,13 @@ transition: all 0.3s ease 0s;
   background-color: #f9dbdb;
   color: #C93636;
 }
+.alert.info {
+  background-image: url('img/icon-info.png');
+  border-color: #72a7cf;
+  background-color: #72a7cf;
+  background-color: #e3f1fb;
+  color: #72a7cf;
+}
 
 /* Components */
 
