@@ -98,13 +98,13 @@ function questionTemplate () {
   // Set the question page
   let mainHtml = '';
   let questionAndScoreHtml = `<div class="question-header"><div class="question-number">Question ${store.questionNumber + 1} of ${store.questions.length}</div><div class="question-score">Current Score: ${store.score}/${store.questionNumber}</div></div>`;
-  let questionHtml = `<header><h2>${store.questions[store.questionNumber].question}</h2></header>`;
+  let questionHtml = `<form><fieldset><legend><h2>${store.questions[store.questionNumber].question}</h2></legend>`;
   let answersHtml = '';
-  let footerHtml = '<div class="question-footer"></div>';
+  let footerHtml = '</fieldset><input type="submit" value="Submit"></form><div class="question-footer"></div>';
 
   answersHtml += '<ul class="answers">';
-  store.questions[store.questionNumber].answers.forEach((answer) => {
-    answersHtml += `<li><button class="answer">${answer}</button></li>`;
+  store.questions[store.questionNumber].answers.forEach((answer, i) => {
+    answersHtml += `<li><input type="radio" id="answer${i}" name="answer" data-answer="${answer}"><label for="answer${i}">${answer}</label></li>`;
   });
   answersHtml += '</ul>';
   mainHtml = '<section class="page"><div class="container">' + questionAndScoreHtml + questionHtml + answersHtml + footerHtml + '</div></section>';
@@ -112,14 +112,26 @@ function questionTemplate () {
   $('main').html(mainHtml);
 
   // Initiate question buttons
-  $('.answer').on('click', function() {
-    if ($(this).html() === store.questions[store.questionNumber].correctAnswer) {
-      renderCorrect();
-    } else {
-      renderIncorrect();
+  let questionAnswered = false;
+  $('form').submit(function(e) {
+    e.preventDefault();
+    if (questionAnswered) {
+      return; // don't let them answer a question twice
     }
-    $(this).addClass('selected');
-    $('.answer').off('click');
+
+    let selectedAnswer = $('input[name="answer"]:checked');
+
+    // Answer was selected
+    if (selectedAnswer.length) {
+      questionAnswered = true;
+      if ($(selectedAnswer).data('answer').toString() === store.questions[store.questionNumber].correctAnswer) {
+        renderCorrect();
+      } else {
+        renderIncorrect();
+      }
+    } else {
+      $('.question-footer').html(`<div class="alert info">Please select an answer.</div>`);
+    }
   });
 }
 
@@ -154,6 +166,8 @@ function endQuizTemplate () {
 /** ******** RENDER FUNCTION(S) **********/
 
 function renderCorrect() {
+  $('input[type="submit"]').remove();
+
   // if it's the last question, say Finish instead of next question
   let buttonText = '';
   if (store.questionNumber === store.questions.length - 1) {
@@ -174,6 +188,8 @@ function renderCorrect() {
 }
 
 function renderIncorrect() {
+  $('input[type="submit"]').remove();
+
   // if it's the last question, say Finish instead of next question
   let buttonText = '';
   if (store.questionNumber === store.questions.length - 1) {
