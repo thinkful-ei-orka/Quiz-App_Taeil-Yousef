@@ -45,21 +45,30 @@ fieldset {
   border: 0;
   margin: 0;
 }
-.answer {
+label {
   padding: 10px 15px;
-  border: 2px solid #919DAC;
+  border: 3px solid #60a3bc;
   border-radius: 3px;
   display: inline-block;
   cursor: pointer;
 }
-.answer:hover {
+label:hover {
   background: #17789c;
+  border-color: #17789c;
 }
-.answer.selected {
+label.selected {
   background: #17789c;
+  border-color: #17789c;
 }
-.answer:focus {
-  border-color: #3987FD;
+input[type="radio"] {
+  display: inline-block;
+  width: 20px;
+  margin-right: -25px;
+  margin-left: 5px;
+}
+input[type="radio"]:checked + label {
+  background: #17789c;
+  border-color: #17789c;
 }
 
 ul.answers {
@@ -104,7 +113,7 @@ cursor: pointer;
   transition: all 0.3s ease 0s;
 }
 
-.answer {
+label {
 /* font-family: ; */
 color: rgb(255, 255, 255);
 text-decoration: none;
@@ -112,11 +121,10 @@ background: #60a3bc;
 padding: 10px;
 border-radius: 6px;
 display: inline-block;
-border: none;
 transition: all 0.4s ease 0s;
 }
 
-.answer:hover {
+label:hover {
   text-shadow: 0px 0px 6px rgb(150, 248, 255);
   -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
   -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
